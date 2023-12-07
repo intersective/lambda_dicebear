@@ -1,0 +1,50 @@
+service: ${env:STACK_NAME}-practera-dicebear-${env:ENV}
+provider:
+  name: aws
+  stage: ${env:ENV}
+  region: ${env:REGION}
+  stackTags:
+    StackName: ${env:STACK_NAME}
+    Env: ${env:ENV}
+  tags:
+    StackName: ${env:STACK_NAME}
+    Env: ${env:ENV}
+  runtime: nodejs18.x
+  memorySize: 2048
+  timeout: 15
+  ecr:
+    images:
+      dicebear:
+        path: ./
+  iam:
+    role:
+      name: practera-dicebear-golive
+      statements:
+        - Effect: Allow
+          Action:
+            - '*'
+          Resource: '*'
+
+functions:
+  dicebear:
+    image:
+      name: dicebear
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+plugins:
+  - serverless-offline
+  - serverless-domain-manager
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+    noPrependStageInUrl: true
+  customDomain:
+    domainName: dicebear.p2-prerelease.practera.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true

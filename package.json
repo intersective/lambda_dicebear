@@ -1,0 +1,46 @@
+{
+  "name": "@dicebear/api",
+  "private": true,
+  "license": "MIT",
+  "author": "Florian Körner <contact@florian-koerner.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --watch ./src/server.ts",
+    "build": "tsc --build",
+    "start": "node ./dist/server.js",
+    "test": "node --test tests/*.js"
+  },
+  "workspaces": [
+    "./versions/*"
+  ],
+  "dependencies": {
+    "@dicebear/api-5": "*",
+    "@dicebear/api-6": "*",
+    "@dicebear/api-7": "*",
+    "@fastify/aws-lambda": "^3.5.0",
+    "@fastify/cors": "^8.4.0",
+    "@resvg/resvg-js": "^2.4.1",
+    "aws-lambda": "^1.0.7",
+    "change-case": "^5.0.2",
+    "exiftool-vendored": "^23.3.0",
+    "fastify": "^4.23.2",
+    "qs": "^6.11.2",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "@dicebear/core": "^7.0.1",
+    "@tsconfig/node18": "^1.0.2",
+    "@types/aws-lambda": "^8.10.130",
+    "@types/json-schema": "^7.0.13",
+    "@types/node": "^16.11.7",
+    "@types/qs": "^6.9.8",
+    "prettier": "^2.4.1",
+    "serverless-domain-manager": "^7.3.3",
+    "serverless-offline": "^13.3.0",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
