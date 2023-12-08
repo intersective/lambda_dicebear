@@ -11,6 +11,6 @@ COPY --from=build /app/dist ${LAMBDA_TASK_ROOT}
 COPY versions ${LAMBDA_TASK_ROOT}/versions
 COPY package.json ${LAMBDA_TASK_ROOT}/package.json
 COPY package-lock.json ${LAMBDA_TASK_ROOT}/package-lock.json
-RUN npm ci --production
+RUN npm ci --omit=dev
 
 CMD ["lambda.handler"]
