@@ -18,7 +18,7 @@ provider:
         path: ./
   iam:
     role:
-      name: practera-dicebear-golive
+      name: ${env:STACK_NAME}-practera-dicebear-${env:ENV}
       statements:
         - Effect: Allow
           Action:
@@ -44,7 +44,7 @@ custom:
     host: 0.0.0.0
     noPrependStageInUrl: true
   customDomain:
-    domainName: dicebear.p2-prerelease.practera.com
+    domainName: dicebear.practera.com
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
